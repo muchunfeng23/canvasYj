@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="400" style="background-image: image('bj.png')"></canvas>
+</body>
+
+<script type="text/javascript">
+    var c=document.getElementById("myCanvas");
+    var cxt=c.getContext("2d");
+    var img=new Image()
+    img.src="bj.png"
+    cxt.drawImage(img,0,0);
+    // yin(cxt,0,0)
+    drawYj(13)
+    //num = 0-63
+    function drawYj(num){
+        var yiwei = 0
+        var startX1 = 100
+        var startY1 = 60
+        while(yiwei < 6){
+            var yinOrYang = num & 0x0001
+            num = num >> 1
+            yiwei++
+            if(yinOrYang == 0){
+                yin(cxt,startX1,startY1)
+            }else{
+                yang(cxt,startX1,startY1)
+            }
+            startY1 += 45
+            console.log("startY = " + startY1)
+        }
+    }
+
+    function yin(cxt,startX,startY){
+        cxt.fillStyle="#000000";
+        cxt.fillRect(startX,startY,90,35);
+        cxt.fillRect(startX + 110,startY,90,35);
+    }
+
+    function yang(cxt,startX,startY){
+        cxt.fillStyle="#000000";
+        cxt.fillRect(startX,startY,200,35);
+    }
+</script>
+</html>
